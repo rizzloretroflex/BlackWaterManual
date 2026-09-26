@@ -1,561 +1,630 @@
 <html>
 <head>
+
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,
+initial-scale=1.0">
 <title>BlackWater: The Manual</title>
-<meta name="generator" content="LibreOffice 7.5.0.3 (Windows)">
-<meta name="created" content="2026-09-05T09:31:26.040000000">
-<meta name="changed" content="2026-09-05T11:30:43.042000000">
-<style type="text/css">
-@page { size: 8.5in 11in; margin: 0.79in }
-p { line-height: 115%; margin-bottom: 0.1in; background: transparent }
-a:link { color: #000080; text-decoration: underline }
-a:visited { color: #800000; text-decoration: underline }
+<style>
+/* CSS Variables for quick theme customization */
+:root {
+--bg-dark: #0f172a;
+--bg-card: #1e293b;
+--bg-card-hover: #334155;
+--accent: #38bdf8;
+--accent-muted: #0284c7;
+--text-main: #f8fafc;
+--text-muted: #94a3b8;
+--border-color: #334155;
+--shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+}
+
+/* Base Reset & Typography */
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+body {
+background-color: var(--bg-dark);
+color: var(--text-main);
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+line-height: 1.6;
+padding: 2rem 1rem;
+}
+
+.container {
+max-width: 1200px;
+margin: 0 auto;
+}
+
+/* Header */
+header {
+text-align: center;
+margin-bottom: 3rem;
+border-bottom: 2px solid var(--border-color);
+padding-bottom: 1.5rem;
+}
+
+h1 {
+font-size: 2.75rem;
+letter-spacing: 2px;
+color: var(--accent);
+text-transform: uppercase;
+font-weight: 800;
+}
+
+.subtitle {
+font-size: 1.1rem;
+color: var(--text-muted);
+margin-top: 0.5rem;
+}
+
+/* Hero Lead Section */
+.lead-section {
+background: var(--bg-card);
+border-left: 4px solid var(--accent);
+padding: 1.5rem 2rem;
+border-radius: 6px;
+margin-bottom: 3rem;
+box-shadow: var(--shadow);
+}
+
+.lead-section h2 {
+font-size: 1.75rem;
+color: var(--accent);
+margin-bottom: 0.5rem;
+}
+
+.lead-section p {
+font-size: 1.15rem;
+color: var(--text-main);
+}
+
+/* Section Styling */
+section {
+margin-bottom: 4rem;
+}
+
+.section-title {
+font-size: 2rem;
+text-transform: uppercase;
+letter-spacing: 1px;
+margin-bottom: 0.5rem;
+color: #ffffff;
+border-bottom: 1px solid var(--border-color);
+padding-bottom: 0.5rem;
+}
+
+.section-description {
+color: var(--text-muted);
+margin-bottom: 2rem;
+font-size: 1.05rem;
+}
+
+/* Responsive Grid for Cards */
+.grid-3 {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+gap: 1.5rem;
+}
+
+.grid-1 {
+display: grid;
+grid-template-columns: 1fr;
+gap: 2rem;
+}
+
+/* Cards */
+.card {
+background-color: var(--bg-card);
+border: 1px solid var(--border-color);
+border-radius: 8px;
+overflow: hidden;
+box-shadow: var(--shadow);
+display: flex;
+flex-direction: column;
+transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+border-color: var(--accent-muted);
+}
+
+.card-img-wrapper {
+width: 100%;
+background-color: #000;
+text-align: center;
+}
+
+.card-img-wrapper img {
+width: 100%;
+height: auto;
+max-height: 450px;
+object-fit: contain;
+display: block;
+}
+
+.card-content {
+padding: 1.25rem;
+flex-grow: 1;
+}
+
+.card-title {
+font-size: 1.2rem;
+font-weight: 700;
+color: var(--accent);
+margin-bottom: 0.5rem;
+text-transform: uppercase;
+}
+
+.card-text {
+font-size: 0.95rem;
+color: var(--text-muted);
+}
+
+/* Data Tables */
+.table-wrapper {
+overflow-x: auto;
+margin-top: 1rem;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+background-color: var(--bg-card);
+border-radius: 6px;
+overflow: hidden;
+box-shadow: var(--shadow);
+margin-bottom: 1rem;
+}
+
+th, td {
+padding: 0.75rem 1rem;
+text-align: left;
+border-bottom: 1px solid var(--border-color);
+}
+
+th {
+background-color: #111827;
+color: var(--accent);
+font-weight: 600;
+text-transform: uppercase;
+font-size: 0.85rem;
+letter-spacing: 0.5px;
+}
+
+tr:hover {
+background-color: var(--bg-card-hover);
+}
+
+td {
+font-size: 0.9rem;
+color: var(--text-main);
+}
+
+td:first-child {
+font-weight: 600;
+width: 30%;
+}
+
+.table-note {
+font-size: 0.85rem;
+color: var(--accent);
+margin-top: 0.5rem;
+}
+
+/* Utility */
+a {
+color: var(--accent);
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
 </style>
 </head>
-<body dir="ltr" vlink="#800000" link="#000080" lang="en-US">
-<p style="line-height: 100%; margin-bottom: 0in"> <font
-face="Anton"><font style="font-size: 20pt" size="5">BLACKWATER:
-The Manual</font></font></p>
-<p style="line-height: 100%; margin-bottom: 0in"><font
-face="Calibri"><br>
-</font> </p>
-<font face="Arial"><br>
-<br>
-</font><br>
-<div align="center"><font size="+3"><b><font face="Arial"><font
-face="Arial"><br>
-THE BRIDGE</font></font></b></font><br>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote><b><font size="+3" face="Helvetica,
-Arial, sans-serif"><font size="+1">The Bridge
-is the Central Command Post by which you
-will issue most of your commands.&nbsp; Set
-Carrier direction, launch skiffs and drones,
-configure your economy, research and mining
-priorities and monitor ship status.</font></font></b><br>
-<b><font size="+3" face="Helvetica, Arial,
-sans-serif"><b> </b></font> </b></blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
+<body>
+<div class="container">
+<!-- Header -->
+<header>
+<h1>BlackWater</h1>
+<div class="subtitle">Tactical Systems &amp; Operations Manual</div>
+</header>
+<main>
+<!-- Hero/Lead Section -->
+<section class="lead-section">
+<h2>The Bridge</h2>
+<p>The Bridge is the Central Command Post by which you will
+issue most of your commands. Set Carrier direction, launch
+skiffs and drones, configure your economy, research and
+mining priorities, and monitor ship status.</p>
+</section>
+<!-- Section: Bridge Systems -->
+<section>
+<h2 class="section-title">Bridge Subsystems</h2>
+<p class="section-description">Key monitoring, control, and
+response panels available on the main bridge command desk.</p>
+<div class="grid-3">
+<!-- Card 1 -->
+<article class="card">
+<div class="card-img-wrapper"> <a
+href="images/Screenshot%202026-09-26%20123146.png"
+target="_blank"> <img
+src="images/Screenshot%202026-09-26%20123146.png"
+alt="The Bridge Overview"> </a> </div>
+<div class="card-content">
+<h3 class="card-title">The Bridge</h3>
+<p class="card-text">Monitor several systems at once. At
+a glance, view active airborne drones, launched
+skiffs, and return statuses. Mounted monitors show
+live inventory levels and real-time digital
+notifications.</p>
 </div>
-<font face="Arial"><br>
-</font>
-<table width="80%" cellspacing="2" cellpadding="2" border="0"
-align="center">
-<tbody>
-<tr>
-<td valign="top" align="center">
-<p><font face="Helvetica, Arial, sans-serif"><b>THE BRIDGE<br>
-</b></font></p>
-</td>
-<td valign="top" align="center"><font face="Helvetica, Arial,
-sans-serif"><b>DRONE CONTROL PANEL</b><br>
-</font></td>
-<td valign="top" align="center"><font face="Helvetica, Arial,
-sans-serif"><b>SKIFF CONTROL PANEL</b><br>
-</font></td>
-</tr>
-<tr>
-<td valign="top" align="center"> <a
-href="images/Screenshot%202026-09-26%20123146.png"><img
-src="images/Screenshot%202026-09-26%20123146.png" alt=""
-width="320" height="178" border="0"></a> </td>
-<td valign="top" align="center"><font face="Helvetica, Arial,
-sans-serif"><a
-href="images/Screenshot%202026-09-26%20130121.png"><img
+</article>
+<!-- Card 2 -->
+<article class="card">
+<div class="card-img-wrapper"> <a
+href="images/Screenshot%202026-09-26%20130121.png"
+target="_blank"> <img
 src="images/Screenshot%202026-09-26%20130121.png"
-alt="" width="320" height="181" border="0"></a><br>
-</font></td>
-<td valign="top" align="center"><font face="Helvetica, Arial,
-sans-serif"><a
-href="images/Screenshot%202026-09-26%20130143.png"><img
+alt="Drone Control Panel"> </a> </div>
+<div class="card-content">
+<h3 class="card-title">Drone Control Panel</h3>
+<p class="card-text">Drones 1 through 4 are represented
+with individual indicator lights: Green for In Carrier
+Bay [BAY], Red for Airborne [ABRN], and blinking Blue
+for Returning [RTN].</p>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="card">
+<div class="card-img-wrapper"> <a
+href="images/Screenshot%202026-09-26%20130143.png"
+target="_blank"> <img
 src="images/Screenshot%202026-09-26%20130143.png"
-alt="" width="320" height="179" border="0"></a><br>
-</font></td>
-</tr>
-<tr>
-<td valign="top">
-<p><font face="Helvetica, Arial, sans-serif">The Bridge is
-where you can monitor several systems at once.&nbsp; At
-a glance you can see which drones are airborne, which
-skiffs are launched and the return statuses of
-each.&nbsp; Mounted monitors show both current inventory
-levels as well as digital notifications.<br>
-</font></p>
-<div align="center"><font face="Helvetica, Arial,
-sans-serif"><br>
-</font></div>
-<p><font face="Helvetica, Arial, sans-serif"><br>
-</font></p>
-</td>
-<td valign="top"><font face="Helvetica, Arial, sans-serif">Drones
-
-
-1 through 4 are represented on the Drone Control Panel as
-well as their current state indicated by the individual
-indicator lights.&nbsp; The green In the Carrier Bay
-[BAY], the red Airborne [ABRN] indicator and the blue
-blinking Returning to the Carrier [RTN].<br>
-</font></td>
-<td valign="top"><font face="Helvetica, Arial, sans-serif">Skiffs
-
-
-1 through 4 are represented on the Skiff Control Panel and
-their current state represented by their individual
-indicator lights.&nbsp; The green In Dock [DOCK]
-indicator, the red Launched indicator [OUT] and blinking
-blue Returning to Carrier [RTN] indicator lights.<br>
-</font></td>
-</tr>
-<tr>
-<td valign="top" align="center"><font face="Helvetica, Arial,
-sans-serif"><b>CARRIER CONTROL PANEL</b><br>
-</font></td>
-<td valign="top" align="center"><font face="Helvetica, Arial,
-sans-serif"><b>INVENTORY AND STATUS SCREEN</b><br>
-</font></td>
-<td valign="top" align="center"><font face="Helvetica, Arial,
-sans-serif"><b>NOTIFICATION SCREEN</b></font></td>
-</tr>
-<tr>
-<td valign="top" align="center"><font face="Helvetica, Arial,
-sans-serif"><a
-href="images/Screenshot%202026-09-26%20131233.png"><img
+alt="Skiff Control Panel"> </a> </div>
+<div class="card-content">
+<h3 class="card-title">Skiff Control Panel</h3>
+<p class="card-text">Skiffs 1 through 4 status tracking
+via dedicated indicator lights: Green for In Dock
+[DOCK], Red for Launched [OUT], and blinking Blue for
+Returning [RTN].</p>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="card">
+<div class="card-img-wrapper"> <a
+href="images/Screenshot%202026-09-26%20131233.png"
+target="_blank"> <img
 src="images/Screenshot%202026-09-26%20131233.png"
-alt="" width="320" height="179" border="0"></a><br>
-</font></td>
-<td valign="top" align="center"><font face="Helvetica, Arial,
-sans-serif"><a
-href="images/Screenshot%202026-09-26%20131036.png"><img
+alt="Carrier Control Panel"> </a> </div>
+<div class="card-content">
+<h3 class="card-title">Carrier Control Panel</h3>
+<p class="card-text">Set carrier speed, direction, and
+toggle between Automatic or Manual Control. Configure
+the Resupply Drone to bring stockpiled items from Home
+Island directly onto the ship.</p>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="card">
+<div class="card-img-wrapper"> <a
+href="images/Screenshot%202026-09-26%20131036.png"
+target="_blank"> <img
 src="images/Screenshot%202026-09-26%20131036.png"
-alt="" width="320" height="178" border="0"></a><br>
-</font></td>
-<td valign="top" align="center"><font face="Helvetica, Arial,
-sans-serif"><a
-href="images/Screenshot%202026-09-26%20131057.png"><img
+alt="Inventory and Status Screen"> </a> </div>
+<div class="card-content">
+<h3 class="card-title">Inventory &amp; Status Screen</h3>
+<p class="card-text">Displays Carrier health, fuel, and
+storage quantities (Missiles, UAVs, Flares,
+Transmitters). Quickly check deployed units and the
+total number of currently occupied islands.</p>
+</div>
+</article>
+<!-- Card 6 -->
+<article class="card">
+<div class="card-img-wrapper"> <a
+href="images/Screenshot%202026-09-26%20131057.png"
+target="_blank"> <img
 src="images/Screenshot%202026-09-26%20131057.png"
-alt="" width="320" height="178" border="0"></a><br>
-</font></td>
-</tr>
-<tr>
-<td valign="top"><font face="Helvetica, Arial, sans-serif">The
-Carrier Control Panel allows you to set the direction and
-speed of the entire Carrier as well set the Carrier into
-Automatic or Manual Control.&nbsp; You can also configure
-the Resupply Drone to outfit your carrier with whatever
-items you have stockpiled on the Home Island that need to
-be brought onto the Carrier.<br>
-</font></td>
-<td valign="top"><font face="Helvetica, Arial, sans-serif">The
-Inventory and Status Screen shows Carrier Health, fuel and
-the quantities of other items stored on the ship.&nbsp;
-Missiles, UAVs, Flares, Long-Range Transmitters and more
-are represented.&nbsp; At-a-Glance you can determine how
-many skiffs and drones are deployed and the number of
-islands you currently occupy. <br>
-</font></td>
-<td valign="top"><font face="Helvetica, Arial, sans-serif">The
-Digital Notification Screen will keep you up-to-date on
-the current statuses of the carrier, drones, skiffs and
-near-by threats as they emerge.&nbsp; <br>
-</font></td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div align="center"><font size="+3" face="Helvetica, Arial,
-sans-serif"><b>THE ECONOMY<br>
-</b><font size="+1">Your configured economy settings determine
-item priority and over-all strategy</font><b><br>
-</b></font></div>
-<br>
-<table width="80%" cellspacing="2" cellpadding="2" border="0"
-align="center">
-<tbody>
-<tr>
-<td valign="top" align="center"><font face="Helvetica, Arial,
-sans-serif"><b>MANUFACTURING</b><br>
-</font></td>
-<td valign="top" align="center"><font face="Helvetica, Arial,
-sans-serif"><b>MINING</b><br>
-</font></td>
-<td valign="top" align="center"><font face="Helvetica, Arial,
-sans-serif"><b>RESEARCH</b><br>
-</font></td>
-</tr>
-<tr>
-<td valign="top" align="center"><font face="Helvetica, Arial,
-sans-serif"><a
-href="images/Screenshot%202026-09-26%20132423.png"><img
+alt="Notification Screen"> </a> </div>
+<div class="card-content">
+<h3 class="card-title">Notification Screen</h3>
+<p class="card-text">Digital feed providing real-time
+operational status updates across the carrier, drones,
+skiffs, and emerging nearby threats.</p>
+</div>
+</article>
+</div>
+</section>
+<!-- Section: Economy -->
+<section>
+<h2 class="section-title">The Economy</h2>
+<p class="section-description">Configured economy settings
+dictate production priorities, resource management, and
+overall operational strategy.</p>
+<div class="grid-3">
+<!-- Manufacturing Column -->
+<article class="card">
+<div class="card-img-wrapper"> <a
+href="images/Screenshot%202026-09-26%20132423.png"
+target="_blank"> <img
 src="images/Screenshot%202026-09-26%20132423.png"
-alt="" width="320" height="179" border="0"></a><br>
-</font></td>
-<td valign="top" align="center"><font face="Helvetica, Arial,
-sans-serif"><a
-href="images/Screenshot%202026-09-26%20132436.png"><img
+alt="Manufacturing Panel"> </a> </div>
+<div class="card-content">
+<h3 class="card-title">Manufacturing</h3>
+<p class="card-text">There are currently 17
+manufacturable items produced at your Factory Islands.
+Assign priorities based on active operational strategy
+and factory availability.</p>
+<div class="table-wrapper">
+<table>
+<thead> <tr>
+<th>Item</th>
+<th>Function</th>
+</tr>
+</thead> <tbody>
+<tr>
+<td>Drones</td>
+<td>Manufacture replacement drones</td>
+</tr>
+<tr>
+<td>Skiffs</td>
+<td>Manufacture replacement skiffs</td>
+</tr>
+<tr>
+<td>AtA / AtG Missiles</td>
+<td>Drone-launched Air-to-Air / Air-to-Ground
+missiles</td>
+</tr>
+<tr>
+<td>UAVs</td>
+<td>Unmanned Aerial Vehicles for reconnaissance
+and target painting</td>
+</tr>
+<tr>
+<td>Cruise Missiles</td>
+<td>Heavy artillery fired from Home Base toward
+UAV targets</td>
+</tr>
+<tr>
+<td>Ball Turret *</td>
+<td>Amphibious weapon used to patrol islands and
+engage threats</td>
+</tr>
+<tr>
+<td>Mark V Ball Turret *</td>
+<td>Reinforced turret with electronic shielding
+and boosted firepower</td>
+</tr>
+<tr>
+<td>Flares *</td>
+<td>Counter-measure to distract and redirect
+incoming missiles</td>
+</tr>
+<tr>
+<td>Anti-Aircraft Gun *</td>
+<td>Fires electronic bolts targeting drones and
+skiffs</td>
+</tr>
+<tr>
+<td>SAM Site *</td>
+<td>Ground-based Surface-to-Air missile defense
+system</td>
+</tr>
+<tr>
+<td>Flame Thrower *</td>
+<td>Secondary skiff-mounted weapon targeting
+Tactical Droids</td>
+</tr>
+<tr>
+<td>Building Pod *</td>
+<td>Parachuted pod that clears land and deploys
+structures</td>
+</tr>
+<tr>
+<td>Long-Range Transmitter *</td>
+<td>Extends drone/skiff operation radius past
+2500 units</td>
+</tr>
+<tr>
+<td>Plasma Engine Upgrade *</td>
+<td>Doubles carrier maximum speed from 16kts to
+32kts</td>
+</tr>
+<tr>
+<td>Transport Portal *</td>
+<td>Allows instant regional teleportation across
+the map</td>
+</tr>
+<tr>
+<td>Carrier Rail Gun *</td>
+<td>Heavy deck-mounted long-range artillery</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-note">* Denotes item requires
+completed Research</div>
+</div>
+</article>
+<!-- Mining Column -->
+<article class="card">
+<div class="card-img-wrapper"> <a
+href="images/Screenshot%202026-09-26%20132436.png"
+target="_blank"> <img
 src="images/Screenshot%202026-09-26%20132436.png"
-alt="" width="320" height="179" border="0"></a><br>
-</font></td>
-<td valign="top" align="center"><font face="Helvetica, Arial,
-sans-serif"><a
-href="images/Screenshot%202026-09-26%20132456.png"><img
+alt="Mining Panel"> </a> </div>
+<div class="card-content">
+<h3 class="card-title">Mining</h3>
+<p class="card-text">Mining Islands extract 3 essential
+fuel types for the Carrier, Drones, and Skiffs. Fuel
+allocation and extraction rates are prioritized based
+on active Mining Island count and user settings.</p>
+</div>
+</article>
+<!-- Research Column -->
+<article class="card">
+<div class="card-img-wrapper"> <a
+href="images/Screenshot%202026-09-26%20132456.png"
+target="_blank"> <img
 src="images/Screenshot%202026-09-26%20132456.png"
-alt="" width="320" height="179" border="0"></a><br>
-</font></td>
+alt="Research Panel"> </a> </div>
+<div class="card-content">
+<h3 class="card-title">Research</h3>
+<p class="card-text">Universities generate knowledge
+points required to unlock advanced manufacturing
+options. Research output scales directly with total
+University Islands owned.</p>
+<div class="table-wrapper">
+<table>
+<thead> <tr>
+<th>Research Tech</th>
+<th>Unlocks</th>
+</tr>
+</thead> <tbody>
+<tr>
+<td>Ball Turret</td>
+<td>Amphibious defense unit</td>
 </tr>
 <tr>
-<td valign="top">
-<div align="center"><font face="Helvetica, Arial,
-sans-serif"><br>
-There are currently 17 items that can be manufactured at
-your various Factory Islands and can be given various
-priorities depending on your strategy and number of
-Factory islands you currently have.<br>
-</font></div>
-<font face="Helvetica, Arial, sans-serif"><br>
-</font>
-<table width="80%" cellspacing="2" cellpadding="2"
-border="0" align="center">
-<tbody>
-<tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Drones<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Manufacture Replacement Drones<br>
-</font></td>
+<td>Mark V Ball Turret</td>
+<td>Shielded heavy turret</td>
 </tr>
 <tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Skiffs<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Manufacture Replacement Skiffs<br>
-</font></td>
+<td>Flares</td>
+<td>Missile countermeasures</td>
 </tr>
 <tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">AtA/AtG Missiles<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Drone-launched Air-to-Air
-Missiles/Air-to-Ground missiles<br>
-</font></td>
+<td>Anti-Aircraft Gun</td>
+<td>Anti-drone energy battery</td>
 </tr>
 <tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">UAVs<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Unmanned Ariel Vehicles
-transmit images back to the carrier and allows the
-targeting of Cruise Missiles<br>
-</font></td>
+<td>SAM Site</td>
+<td>Surface-to-air site</td>
 </tr>
 <tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Cruise Missiles<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Fired from your Home Base, the
-Cruise Missile is targeted by the UAV targeting
-system dealing a great deal of damage<br>
-</font></td>
+<td>Flame Thrower</td>
+<td>Skiff-mounted close combat</td>
 </tr>
 <tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Ball Turret*<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">An amphibious
-offensive/defensive weapon primarly used to patrol
-your islands and engage threats<br>
-</font></td>
+<td>Building Pod</td>
+<td>Automated structure construction</td>
 </tr>
 <tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Mark V Ball Turret*<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Based on the same model is the
-original Ball Turret, however the Mark V version
-is a more robust turret with stronger offensive
-capabilities and an electronic shield offering
-greater protection from incoming fire<br>
-</font></td>
+<td>Long-Range Transmitter</td>
+<td>Extended operational range</td>
 </tr>
 <tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Flares*<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Acting as a counter-measure
-against incoming missiles, the Flare distracts and
-redirects incoming missiles<br>
-</font></td>
+<td>Plasma Engine Upgrade</td>
+<td>Carrier speed boost (32kts)</td>
 </tr>
 <tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Anti-Aircraft Gun*<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">The Anti-Aircraft Gun fires a
-series of electronic bolts designed as a deterrant
-for Drones but can also be effective against
-Skiffs<br>
-</font></td>
+<td>Transport Portal</td>
+<td>Regional portal travel</td>
 </tr>
 <tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Surface-to-Air Missile Site
-[SAM]*<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">A ground-based airborne threat
-mitigation system only useful against Drones<br>
-</font></td>
-</tr>
-<tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Flame Thrower*<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">A secondary, Skiff-mounted
-weapon for use against Tactical Droids primarily<br>
-</font></td>
-</tr>
-<tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Building Pod*<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">A Building Pod is a
-Drone-Carried, parachuting Pod which will destroy
-any existing infrastructure around its drop
-location and automatically build whatever
-preconfigured structure it was programmed
-to:&nbsp; A University, Mine or Factory.<br>
-</font></td>
-</tr>
-<tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Long-Range Transmitter*<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Long-Range Transmitters extend
-the range of your Drones and Skiffs from the
-Carrier.&nbsp; Normal range is 2500 from the
-Carrier<br>
-</font></td>
-</tr>
-<tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Plasma Engine Upgrade*<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Doubles the speed of your
-Carrier from 16kts to 32kts<br>
-</font></td>
-</tr>
-<tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Transport Portal*<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Allows you to instantly
-teleport to other regions of the map<br>
-</font></td>
-</tr>
-<tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Carrier Rail Gun*<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">A powerful Deck-mounted gun
-capable of striking targets at far distance<br>
-</font></td>
-</tr>
-<tr>
-<td valign="top"><font face="Helvetica, Arial,
-sans-serif"><br>
-</font></td>
-<td valign="top"><font face="Helvetica, Arial,
-sans-serif"><br>
-</font></td>
-</tr>
-<tr>
-<td valign="top"><font face="Helvetica, Arial,
-sans-serif"><br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif"><b>* - Denotes a Research
-Requirement<br>
-</b></font></td>
+<td>Carrier Rail Gun</td>
+<td>Heavy deck artillery</td>
 </tr>
 </tbody>
 </table>
-<font face="Helvetica, Arial, sans-serif"><br>
-</font></td>
-<td valign="top"><font face="Helvetica, Arial, sans-serif"><br>
-Your Mining Islands produce 3 types of fuel for the
-Carrier, the Drones and Skiffs.&nbsp; These items are also
-prioritized given your configuration and the number of
-Mining islands you currently have.<br>
-</font></td>
-<td valign="top"><br>
-<font face="Helvetica, Arial, sans-serif">Universities
-provide the knowledge production to research items that
-will become available to manufacture.&nbsp; The speed at
-which these discoveries are made depends on the number of
-University Islands you have and each individual items
-research priority.<br>
-<br>
-The following items require research to manufacture:</font><br>
-<br>
-<table width="80%" cellspacing="2" cellpadding="2"
-border="0" align="center">
-<tbody>
-<tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Ball Turret<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">An amphibious
-offensive/defensive weapon primarly used to patrol
-your islands and engage threats<br>
-</font></td>
-</tr>
-<tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Mark V Ball Turret<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Based on the same model is the
-original Ball Turret, however the Mark V version
-is a more robust turret with stronger offensive
-capabilities and an electronic shield offering
-greater protection from incoming fire<br>
-</font></td>
-</tr>
-<tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Flares<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Acting as a counter-measure
-against incoming missiles, the Flare distracts and
-redirects incoming missiles<br>
-</font></td>
-</tr>
-<tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Anti-Aircraft Gun<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">The Anti-Aircraft Gun fires a
-series of electronic bolts designed as a deterrant
-for Drones but can also be effective against
-Skiffs<br>
-</font></td>
-</tr>
-<tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Surface-to-Air Missile Site
-[SAM]<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">A ground-based airborne threat
-mitigation system only useful against Drones<br>
-</font></td>
-</tr>
-<tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Flame Thrower<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">A secondary, Skiff-mounted
-weapon for use against Tactical Droids primarily<br>
-</font></td>
-</tr>
-<tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Building Pod<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">A Building Pod is a
-Drone-Carried, parachuting Pod which will destroy
-any existing infrastructure around its drop
-location and automatically build whatever
-preconfigured structure it was programmed
-to:&nbsp; A University, Mine or Factory.<br>
-</font></td>
-</tr>
-<tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Long-Range Transmitter<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Long-Range Transmitters extend
-the range of your Drones and Skiffs from the
-Carrier.&nbsp; Normal range is 2500 from the
-Carrier<br>
-</font></td>
-</tr>
-<tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Plasma Engine Upgrade<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Doubles the speed of your
-Carrier from 16kts to 32kts<br>
-</font></td>
-</tr>
-<tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Transport Portal<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Allows you to instantly
-teleport to other regions of the map<br>
-</font></td>
-</tr>
-<tr>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">Carrier Rail Gun<br>
-</font></td>
-<td valign="top"><font size="-1" face="Helvetica,
-Arial, sans-serif">A powerful Deck-mounted gun
-capable of striking targets at far distance<br>
-</font></td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody>
-</table>
-<br>
-<br>
-<br>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Section: Tactical & Operations -->
+<section>
+<h2 class="section-title">Tactical Operations</h2>
+<div class="grid-1">
+<!-- Tac View -->
+<article class="card">
+<div class="card-img-wrapper"> <a
+href="images/Screenshot%202026-09-26%20141956.png"
+target="_blank"> <img
+src="images/Screenshot%202026-09-26%20141956.png"
+alt="Tactical View Screen"> </a> </div>
+<div class="card-content">
+<h3 class="card-title">The Tac View</h3>
+<p class="card-text">A consolidated tactical command
+display merging Bridge sub-systems with an interactive
+map. Used for plotting waypoints, launching UAVs,
+configuring economy priorities, and accessing Island
+Views.</p>
+</div>
+</article>
+<!-- Island Panel & Targeting -->
+<article class="card">
+<div class="card-img-wrapper"> <a
+href="images/Screenshot%202026-09-26%20142648.png"
+target="_blank"> <img
+src="images/Screenshot%202026-09-26%20142648.png"
+alt="Island Panel Screen"> </a> </div>
+<div class="card-content">
+<h3 class="card-title">The Island Panel &amp; Targeting</h3>
+<p class="card-text">Allows drag-and-drop tactical
+positioning for defensive items across controlled
+islands. Position assets behind natural terrain
+features to shield them from incoming enemy carrier
+deck artillery.</p>
+</div>
+</article>
+<!-- Cruise Missiles -->
+<article class="card">
+<div class="card-img-wrapper"> <a
+href="images/Screenshot%202026-09-26%20143007.png"
+target="_blank"> <img
+src="images/Screenshot%202026-09-26%20143007.png"
+alt="Cruise Missile Control Screen"> </a> </div>
+<div class="card-content">
+<h3 class="card-title">Cruise Missiles</h3>
+<p class="card-text">Launched directly from your Home
+Island stockpile, Cruise Missiles lock onto and strike
+targets designated by active UAV targeting reticles.</p>
+</div>
+</article>
+</div>
+</section>
+<!-- Section: Hazards -->
+<section>
+<h2 class="section-title">Environmental Threats</h2>
+<div class="grid-3">
+<article class="card">
+<div class="card-img-wrapper"> <a
+href="images/Screenshot%202026-09-26%20143645.png"
+target="_blank"> <img
+src="images/Screenshot%202026-09-26%20143645.png"
+alt="Cyclones Hazard"> </a> </div>
+<div class="card-content">
+<h3 class="card-title">Cyclones</h3>
+<p class="card-text">Wandering sea-based storms that
+move unpredictably. Cyclones damage friendly and enemy
+assets alike, destroying defensive weapons, factories,
+mines, or universities in their path.</p>
+</div>
+</article>
+<article class="card">
+<div class="card-img-wrapper"> <a
+href="images/Screenshot%202026-09-26%20143910.png"
+target="_blank"> <img
+src="images/Screenshot%202026-09-26%20143910.png"
+alt="Ion Plasma Sentries Hazard"> </a> </div>
+<div class="card-content">
+<h3 class="card-title">Ion Plasma Sentries</h3>
+<p class="card-text">Autonomous sentries deployed from
+the Enemy Fortress. They patrol combat zones and
+instantly obliterate any unit entering their forward
+detection cone.</p>
+</div>
+</article>
+</div>
+</section>
+</main>
+</div>
 </body>
 </html>
 
